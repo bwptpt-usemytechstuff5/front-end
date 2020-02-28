@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import RentContext from './contexts/RentContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
-import Rental from './components/Rental';
+import RentalMap from './components/RentalMap';
 import EditRental from './components/EditRental';
 import AddRental from './components/AddRental';
 import './App.css';
@@ -13,7 +13,7 @@ function App() {
   const [rental, setRental] = useState ([
     {
       id: '',
-      technologyType: '',
+      type: '',
       model: '',
       description: '',
       rentalPrice: '',
@@ -41,7 +41,7 @@ function App() {
             </ul>
             <Switch>
               <Route exact path='/' component={Login} />
-              <ProtectedRoute exact path='/rental' component={Rental} />
+              <ProtectedRoute exact path='/rental' component={RentalMap} />
               <ProtectedRoute path='/rental/:id' component={EditRental} />
               <ProtectedRoute path='/add' component={AddRental} />
             </Switch>
