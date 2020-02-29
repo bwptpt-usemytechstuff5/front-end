@@ -1,9 +1,13 @@
+body {
+  background-color: gray;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -14,8 +18,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: dodgerblue;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +39,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.TopLinks {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ListLinks {
+  text-decoration: none;
+  color: orange;
 }
