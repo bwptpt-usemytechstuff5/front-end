@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RentContext from './contexts/RentContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Login from './components/Login';
+//import Login from './components/Login';
+import LoginOld from './components/LoginOld';
 import RentalMap from './components/RentalMap';
 import EditRental from './components/EditRental';
 import AddRental from './components/AddRental';
+import RenterMap from './components/RenterMap';
 import './App.css';
 
 function App() {
@@ -28,22 +30,23 @@ function App() {
       </header>
       <RentContext.Provider value={{ rental, setRental }}>
         <Router>
-            <ul>
+           {/* <ul className='TopLinks'>
               <li>
-                <Link to='/'>Login</Link>
+                <Link className='ListLinks' to='/'>Login</Link>
               </li>
               <li>
-                <Link to='/rental'>My Available Rentals</Link>
+                <Link className='ListLinks' to='/rental'>My Available Rentals</Link>
               </li>
               <li>
-                <Link to='/add'>Add Rental</Link>
+                <Link className='ListLinks' to='/add'>Add Rental</Link>
               </li>
-            </ul>
+           </ul> */}
             <Switch>
-              <Route exact path='/' component={Login} />
+              <Route exact path='/' component={LoginOld} />
               <ProtectedRoute exact path='/rental' component={RentalMap} />
               <ProtectedRoute path='/rental/:id' component={EditRental} />
               <ProtectedRoute path='/add' component={AddRental} />
+              <ProtectedRoute exact path='/renter' component={RenterMap} />
             </Switch>
           </Router>
       </RentContext.Provider>

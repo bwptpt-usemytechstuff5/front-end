@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { BrowserRouter as Link } from 'react-router-dom';
 import RentContext from '../contexts/RentContext';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -44,7 +45,7 @@ const EditRental = ({ history, match }) => {
             datePosted: ''
         }
     );
-/*
+
     useEffect(() => {
         axiosWithAuth()
             .get(`/rental/${match.params.id}`)
@@ -55,7 +56,7 @@ const EditRental = ({ history, match }) => {
             .catch(err => console.log('Did not get rental from EditRental', err));
 
     }, [match.params.id]);
-*/
+
     const handleChange = event => {
 
         setEditRental({ ...editRental, [event.target.name]: event.target.value });
@@ -82,6 +83,17 @@ const EditRental = ({ history, match }) => {
 
     return (
         <div>
+            <ul className='TopLinks'>
+              <li>
+                <Link className='ListLinks' to='/'>Login</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/rental'>My Available Rentals</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/add'>Add Rental</Link>
+              </li>
+           </ul>
             <FormHeading>Edit Rental Information</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
                 <label htmlFor='type'>Technology Type</label>
