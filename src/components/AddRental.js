@@ -74,7 +74,7 @@ const AddRental = ({ history }) => {
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
               <li>
-                <Link className='ListLinks' to='/rental'>My Available Rentals</Link>
+                <Link className='ListLinks' to='/rental'>Dashboard</Link>
               </li>
            </ul>
             <FormHeading>Add Rental Information</FormHeading>

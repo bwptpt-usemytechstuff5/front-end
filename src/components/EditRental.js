@@ -88,7 +88,7 @@ const EditRental = ({ history, match }) => {
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
               <li>
-                <Link className='ListLinks' to='/rental'>My Available Rentals</Link>
+                <Link className='ListLinks' to='/rental'>Dashboard</Link>
               </li>
               <li>
                 <Link className='ListLinks' to='/add'>Add Rental</Link>

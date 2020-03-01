@@ -53,7 +53,26 @@ const Login = ({ history }) => {
             })
             .catch(err => {
                 localStorage.removeItem('token');
-                console.log('Invalid username or password', err);
+                console.log('Invalid Owner username or password', err);
+            })
+    };
+
+    const handleRenter = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .post('/login', userLogin)
+            .then(res => {
+                console.log('Here is the response from the Renter Login Post', res.data.payload);
+                localStorage.setItem('token', res.data.payload);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/renter');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Renter username or password', err);
             })
     };
 
@@ -79,7 +98,10 @@ const Login = ({ history }) => {
                     onChange={handleChange}
                     value={userLogin.password}
                 />
-                <SubmitButton type='submit'>Log In</SubmitButton>
+                <div className='LogInButton'>
+                    <SubmitButton type='submit'>Owner Log In</SubmitButton>
+                    <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+                </div>
             </FormSetup>
         </div>
     )
