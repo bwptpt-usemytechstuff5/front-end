@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+//import { BrowserRouter as Link } from 'react-router-dom';
 import RentContext from '../contexts/RentContext';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -69,14 +69,14 @@ const AddRental = ({ history }) => {
 
     return (
         <div>
-            <ul className='TopLinks'>
+            {/*<ul className='TopLinks'>
               <li>
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
               <li>
                 <Link className='ListLinks' to='/rental'>Dashboard</Link>
               </li>
-           </ul>
+            </ul>*/}
             <FormHeading>Add Rental Information</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
                 <label htmlFor='type'>Technology Type</label>
