@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+//import { BrowserRouter as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // styled-components
@@ -31,11 +31,11 @@ const Renter = ({ item }) => {
     
     return (
         <div>
-            <ul className='TopLinks'>
+            {/*<ul className='TopLinks'>
               <li>
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
-           </ul>
+            </ul>*/}
             <Card>
               <Info>
                   <Name>Technology Type: {item.type}</Name>

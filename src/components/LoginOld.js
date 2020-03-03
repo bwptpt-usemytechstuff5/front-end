@@ -26,7 +26,7 @@ margin-top: 30px;
 `;
 // end styled-components
 
-const Login = ({ history }) => {
+const LoginOld = ({ history }) => {
 
     const [userLogin, setUserLogin] = useState({
         username: '',
@@ -107,4 +107,4 @@ const Login = ({ history }) => {
     )
 }
 
-export default Login;
+export default LoginOld;
