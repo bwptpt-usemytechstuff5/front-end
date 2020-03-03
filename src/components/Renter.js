@@ -38,11 +38,10 @@ const Renter = ({ item }) => {
             </ul>*/}
             <Card>
               <Info>
-                  <Name>Technology Type: {item.type}</Name>
-                  <ListItems>Model: {item.model}</ListItems>
-                  <ListItems>Description: {item.description}</ListItems>
-                  <ListItems>Rental Price: {item.rentalPrice}</ListItems>
-                  <ListItems>Date Posted: {item.datePosted}</ListItems>
+                  <Name>Technology Type: {item.product_type}</Name>
+                  <ListItems>Model: {item.product_model}</ListItems>
+                  <ListItems>Description: {item.product_description}</ListItems>
+                  <ListItems>Rental Price: {item.product_rental_Price}</ListItems>
               </Info>
             </Card>      
         </div>

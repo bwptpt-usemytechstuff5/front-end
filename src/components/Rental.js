@@ -70,11 +70,10 @@ const Rental = ({ item, history }) => {
             </ul>*/}
             <Card>
               <Info>
-                  <Name>Technology Type: {item.type}</Name>
-                  <ListItems>Model: {item.model}</ListItems>
-                  <ListItems>Description: {item.description}</ListItems>
-                  <ListItems>Rental Price: {item.rentalPrice}</ListItems>
-                  <ListItems>Date Posted: {item.datePosted}</ListItems>
+                  <Name>Technology Type: {item.product_type}</Name>
+                  <ListItems>Model: {item.product_model}</ListItems>
+                  <ListItems>Description: {item.product_description}</ListItems>
+                  <ListItems>Rental Price: {item.rental_price}</ListItems>
               </Info>
               <DeleteButton onClick={() => handleDelete(item.id)}>Remove Item</DeleteButton>
               <EditButton onClick={() => handleEdit(item.id)}>Edit Item</EditButton>
