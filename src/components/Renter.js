@@ -1,5 +1,4 @@
 import React from 'react';
-//import { BrowserRouter as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // styled-components
@@ -24,18 +23,22 @@ const Info = styled.ul `
 const ListItems = styled.li `
   color: white;
 `;
+
+const SelectButton = styled.button `
+margin-left: 3%;
+background-color: yellow;
+`;
 // end styled-components
 
 
 const Renter = ({ item }) => {
-    
+  
+  const handleSelect = product => {
+    alert(`${product} request sucessfully sent`);
+  }
+
     return (
         <div>
-            {/*<ul className='TopLinks'>
-              <li>
-                <Link className='ListLinks' to='/'>Login</Link>
-              </li>
-            </ul>*/}
             <Card>
               <Info>
                   <Name>Technology Type: {item.product_type}</Name>
@@ -43,6 +46,7 @@ const Renter = ({ item }) => {
                   <ListItems>Description: {item.product_description}</ListItems>
                   <ListItems>Rental Price: {item.product_rental_Price}</ListItems>
               </Info>
+              <SelectButton onClick={() => handleSelect(item.product_type)}>Rent Now</SelectButton>
             </Card>      
         </div>
     );
