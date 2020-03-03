@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RentContext from './contexts/RentContext';
 import ProtectedRoute from './components/ProtectedRoute';
 //import Login from './components/Login';
@@ -31,7 +31,7 @@ function App() {
       </header>
       <RentContext.Provider value={{ rental, setRental }}>
         <Router>
-            <ul className='TopLinks'>
+            {/*<ul className='TopLinks'>
               <li>
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
@@ -44,7 +44,7 @@ function App() {
               <li>
                 <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
               </li>
-            </ul>
+            </ul>*/}
             <Switch>
               <Route exact path='/' component={LoginOld} />
               <ProtectedRoute path='/logout' component={Logout} />

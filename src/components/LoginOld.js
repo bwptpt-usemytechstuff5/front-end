@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logout from './Logout';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
@@ -76,8 +78,41 @@ const LoginOld = ({ history }) => {
             })
     };
 
+    const handleRenter = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .post('/login', userLogin)
+            .then(res => {
+                console.log('Here is the response from the Renter Login Post', res.data.payload);
+                localStorage.setItem('token', res.data.payload);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/renter');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Renter username or password', err);
+            })
+    };
+
     return (
         <div>
+            <ul className='TopLinks'>
+              <li>
+                <Link className='ListLinks' to='/'>Login</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/rental'>Dashboard</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/add'>Add Rental</Link>
+              </li>
+              <li>
+                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
+              </li>
+            </ul>
             <FormHeading>Enter Login Credentials</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username</label>
@@ -99,7 +134,8 @@ const LoginOld = ({ history }) => {
                     value={userLogin.password}
                 />
                 <div className='LogInButton'>
-                    <SubmitButton type='submit'>Log In</SubmitButton>
+                    <SubmitButton type='submit'>Owner Log In</SubmitButton>
+                    <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
                     <SubmitButton onClick={handleRegister}>New Registration</SubmitButton>
                 </div>
             </FormSetup>

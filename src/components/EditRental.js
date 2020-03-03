@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-//import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Logout from './Logout';
 import RentContext from '../contexts/RentContext';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -83,7 +84,7 @@ const EditRental = ({ history, match }) => {
 
     return (
         <div>
-            {/*<ul className='TopLinks'>
+            <ul className='TopLinks'>
               <li>
                 <Link className='ListLinks' to='/'>Login</Link>
               </li>
@@ -93,7 +94,10 @@ const EditRental = ({ history, match }) => {
               <li>
                 <Link className='ListLinks' to='/add'>Add Rental</Link>
               </li>
-            </ul>*/}
+              <li>
+                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
+              </li>
+            </ul>
             <FormHeading>Edit Rental Information</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
                 <label htmlFor='type'>Technology Type</label>
