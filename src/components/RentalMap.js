@@ -10,7 +10,7 @@ const RentalMap = ({ history }) => {
 
     useEffect(() => {
         axiosWithAuth()
-        .get('/rental')
+        .get('/products')
         .then(res => {
             console.log('Here are the owner rental items', res.data);
             setRental(res.data);

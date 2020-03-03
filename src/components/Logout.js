@@ -1,9 +1,8 @@
 
 
-const Logout = ({ history }) => {
+const Logout = () => {
     
     localStorage.clear();
-    history.push('/');
 }
 
 export default Logout;

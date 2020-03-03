@@ -57,12 +57,12 @@ const LoginOld = ({ history }) => {
             })
     };
 
-    const handleRenter = event => {
+    const handleRegister = event => {
         event.preventDefault();
         axiosWithAuth()
-            .post('/login', userLogin)
+            .post('/register', userLogin)
             .then(res => {
-                console.log('Here is the response from the Renter Login Post', res.data.payload);
+                console.log('Here is the response from New Registration Post', res.data.payload);
                 localStorage.setItem('token', res.data.payload);
                 setUserLogin({
                     username: '',
@@ -72,7 +72,7 @@ const LoginOld = ({ history }) => {
             })
             .catch(err => {
                 localStorage.removeItem('token');
-                console.log('Invalid Renter username or password', err);
+                console.log('Invalid Registration username or password', err);
             })
     };
 
@@ -99,8 +99,8 @@ const LoginOld = ({ history }) => {
                     value={userLogin.password}
                 />
                 <div className='LogInButton'>
-                    <SubmitButton type='submit'>Owner Log In</SubmitButton>
-                    <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+                    <SubmitButton type='submit'>Log In</SubmitButton>
+                    <SubmitButton onClick={handleRegister}>New Registration</SubmitButton>
                 </div>
             </FormSetup>
         </div>

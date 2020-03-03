@@ -42,7 +42,7 @@ function App() {
                 <Link className='ListLinks' to='/add'>Add Rental</Link>
               </li>
               <li>
-                <Link className='ListLinks' to='/logout'>Logout</Link>
+                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
               </li>
             </ul>
             <Switch>
