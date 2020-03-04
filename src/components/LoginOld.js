@@ -45,8 +45,8 @@ const LoginOld = ({ history }) => {
         axiosWithAuth()
             .post('/login', userLogin)
             .then(res => {
-                console.log('Here is the response from the Login Post', res.data.payload);
-                localStorage.setItem('token', res.data.payload);
+                console.log('Here is the response from the Login Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
                 setUserLogin({
                     username: '',
                     password: ''
@@ -58,8 +58,8 @@ const LoginOld = ({ history }) => {
                 console.log('Invalid Owner username or password', err);
             })
     };
-
-    const handleRegister = event => {
+/*
+    const handleOwnerRegister = event => {
         event.preventDefault();
         axiosWithAuth()
             .post('/register', userLogin)
@@ -70,11 +70,31 @@ const LoginOld = ({ history }) => {
                     username: '',
                     password: ''
                 })
+                history.push('/rental');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Owner Registration username or password', err);
+            })
+    };
+*/
+
+    const handleRegister = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .post('/register', userLogin)
+            .then(res => {
+                console.log('Here is the response from New Registration Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
                 history.push('/renter');
             })
             .catch(err => {
                 localStorage.removeItem('token');
-                console.log('Invalid Registration username or password', err);
+                console.log('Invalid Renter Registration username or password', err);
             })
     };
 
@@ -83,8 +103,8 @@ const LoginOld = ({ history }) => {
         axiosWithAuth()
             .post('/login', userLogin)
             .then(res => {
-                console.log('Here is the response from the Renter Login Post', res.data.payload);
-                localStorage.setItem('token', res.data.payload);
+                console.log('Here is the response from the Renter Login Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
                 setUserLogin({
                     username: '',
                     password: ''
@@ -135,8 +155,9 @@ const LoginOld = ({ history }) => {
                 />
                 <div className='LogInButton'>
                     <SubmitButton type='submit'>Owner Log In</SubmitButton>
+                    {/*<SubmitButton onClick={handleOwnerRegister}>New Owner Registration</SubmitButton>*/}
                     <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
-                    <SubmitButton onClick={handleRegister}>New Registration</SubmitButton>
+                    <SubmitButton onClick={handleRegister}>New Renter Registration</SubmitButton>
                 </div>
             </FormSetup>
         </div>

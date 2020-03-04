@@ -44,7 +44,7 @@ const Renter = ({ item }) => {
                   <Name>Technology Type: {item.product_type}</Name>
                   <ListItems>Model: {item.product_model}</ListItems>
                   <ListItems>Description: {item.product_description}</ListItems>
-                  <ListItems>Rental Price: {item.product_rental_Price}</ListItems>
+                  <ListItems>Rental Price: {item.rental_price}</ListItems>
               </Info>
               <SelectButton onClick={() => handleSelect(item.product_type)}>Rent Now</SelectButton>
             </Card>      
