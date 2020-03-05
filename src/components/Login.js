@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 import Logout from './Logout';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
@@ -36,7 +36,7 @@ const Login = ({ history }) => {
         password: ''
     })
 
-    const { register, handleSubmit, errors } = useForm();
+    //const { register, handleSubmit, errors } = useForm();
 
     const handleChange = event => {
 
@@ -44,7 +44,7 @@ const Login = ({ history }) => {
     };
 
     const submitHandle = event => {
-        //event.preventDefault();
+        event.preventDefault();
         axiosWithAuth()
             .post('/login', userLogin)
             .then(res => {
@@ -83,7 +83,7 @@ const Login = ({ history }) => {
 */
 
     const handleRegister = event => {
-        //event.preventDefault();
+        event.preventDefault();
         axiosWithAuth()
             .post('/register', userLogin)
             .then(res => {
@@ -102,7 +102,7 @@ const Login = ({ history }) => {
     };
 
     const handleRenter = event => {
-        //event.preventDefault();
+        event.preventDefault();
         axiosWithAuth()
             .post('/login', userLogin)
             .then(res => {
@@ -137,7 +137,8 @@ const Login = ({ history }) => {
               </li>
             </ul>
             <FormHeading>Enter Login Credentials</FormHeading>
-            <FormSetup onSubmit={handleSubmit(submitHandle)}>
+      {/*      <FormSetup onSubmit={handleSubmit(submitHandle)}> */}
+                <FormSetup onSubmit={submitHandle}>
                 <label htmlFor='username'>Username</label>
                 <EnterInput
                     id='username'
@@ -146,14 +147,8 @@ const Login = ({ history }) => {
                     placeholder='Minimum 5 Characters'
                     onChange={handleChange}
                     value={userLogin.username}
-                    ref={register({ required: true, minLength: 5 })}
                 />
-                {errors.username && errors.username.type === 'required' && (
-                    <p>This is required</p>
-                )}
-                {errors.username && errors.username.type === 'minLength' && (
-                    <p>Must be 5 characters in length</p>
-                )}
+                
                 <label htmlFor='password'>Password</label>
                 <EnterInput
                     id='password'
@@ -162,14 +157,9 @@ const Login = ({ history }) => {
                     placeholder='Minimum 5 Characters'
                     onChange={handleChange}
                     value={userLogin.password}
-                    ref={register({ required: true, minLength: 5 })}
+        
                 />
-                {errors.password && errors.password.type === 'required' && (
-                    <p>This is required</p>
-                )}
-                {errors.password && errors.password.type === 'minLength' && (
-                    <p>Must be 5 characters in length</p>
-                )}
+                
                 <div className='LogInButton'>
                     <SubmitButton type='submit'>Owner Log In</SubmitButton>
                     {/*<SubmitButton onClick={handleOwnerRegister}>New Owner Registration</SubmitButton>*/}
