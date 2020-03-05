@@ -38,7 +38,6 @@ const EditRental = ({ history, match }) => {
 
     const [editRental, setEditRental] = useState(
         {
-            owner_id: 1,
             product_type: '',
             product_model: '',
             product_description: '',
