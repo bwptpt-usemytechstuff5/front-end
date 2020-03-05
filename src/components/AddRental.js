@@ -36,7 +36,6 @@ const AddRental = ({ history, match }) => {
 
     const [addRental, setAddRental] = useState(
         {
-            owner_id: 1,
             product_type: '',
             product_model: '',
             product_description: '',
@@ -55,6 +54,7 @@ const AddRental = ({ history, match }) => {
             .post('/products', addRental)
             .then(res => {
                 console.log('this is post response for AddRental', res);
+                console.log("add rental", addRental);
                 setAddRental({
                     owner_id: '',
                     product_type: '',

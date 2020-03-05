@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RentContext from './contexts/RentContext';
 import ProtectedRoute from './components/ProtectedRoute';
-//import Login from './components/Login';
-import LoginOld from './components/LoginOld';
+import Login from './components/Login';
+//import LoginOld from './components/LoginOld';
 import Logout from './components/Logout';
 import RentalMap from './components/RentalMap';
 import EditRental from './components/EditRental';
@@ -46,7 +46,7 @@ function App() {
               </li>
             </ul>*/}
             <Switch>
-              <Route exact path='/' component={LoginOld} />
+              <Route exact path='/' component={Login} />
               <ProtectedRoute path='/logout' component={Logout} />
               <ProtectedRoute exact path='/rental' component={RentalMap} />
               <ProtectedRoute path='/rental/:id' component={EditRental} />

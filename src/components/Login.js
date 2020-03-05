@@ -1,68 +1,184 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import Logout from './Logout';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
-const Login = () => {
-	// form state to check if the user is trying to register or login
-	const [registerNewUser, setRegisterNewUser] = useState(false);
+// styled-components
+const FormHeading = styled.h2 `
+margin-top: 40px;
+margin-bottom: 20px;
+`;
 
-	// form structural components
-	const { handleSubmit, register, errors } = useForm();
+const FormSetup = styled.form `
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 40px;
+`;
 
-	// helper functions
-	const onSubmit = values => {
-		console.log(values);
-	};
+const EnterInput = styled.input `
+margin-top: 20px;
+margin-bottom: 20px;
+`;
 
-	// styled components
-	const FormWrapper = styled.section`
-		width: 75vw;
-	`;
+const SubmitButton = styled.button `
+margin-top: 30px;
+`;
+// end styled-components
 
-	const StyledForm = styled.form``;
+const Login = ({ history }) => {
 
-	return (
-		<FormWrapper>
-			<StyledForm onSubmit={handleSubmit(onSubmit)}>
-				{/* eMail */}
-				<input
-					name='email'
-					ref={register({
-						required: 'Required',
-						pattern: {
-							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-							message: 'invalid email address'
-						}
-					})}
-				/>
-				{errors.email && errors.email.message}
+    const [userLogin, setUserLogin] = useState({
+        username: '',
+        password: ''
+    })
 
-				{/* username */}
-				<input
-					name='username'
-					ref={register({
-						validate: value => value !== 'admin' || 'Nice try!'
-					})}
-				/>
-				{errors.username && errors.username.message}
+    const { register, handleSubmit, errors } = useForm();
 
-				{/* 
-                if this person is trying to register a new 
-                user then render a password input field as well 
-                */}
-				{registerNewUser === true ? (
-					<input
-						name='password'
-						ref={register({
-							validate: value => value > 8 || 'Password must be longer then 8'
-						})}
-					/>
-				) : null}
-				{errors.username && errors.username.message}
+    const handleChange = event => {
 
-				<button type='submit'>Submit</button>
-			</StyledForm>
-		</FormWrapper>
-	);
-};
+        setUserLogin({ ...userLogin, [event.target.name]: event.target.value });
+    };
+
+    const submitHandle = event => {
+        //event.preventDefault();
+        axiosWithAuth()
+            .post('/login', userLogin)
+            .then(res => {
+                console.log('Here is the response from the Login Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/rental');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Owner username or password', err);
+            })
+    };
+
+/*    const handleOwnerRegister = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .post('/register', userLogin)
+            .then(res => {
+                console.log('Here is the response from New Registration Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/rental');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Owner Registration username or password', err);
+            })
+    };
+*/
+
+    const handleRegister = event => {
+        //event.preventDefault();
+        axiosWithAuth()
+            .post('/register', userLogin)
+            .then(res => {
+                console.log('Here is the response from New Registration Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/renter');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Renter Registration username or password', err);
+            })
+    };
+
+    const handleRenter = event => {
+        //event.preventDefault();
+        axiosWithAuth()
+            .post('/login', userLogin)
+            .then(res => {
+                console.log('Here is the response from the Renter Login Post', res.data.token);
+                localStorage.setItem('token', res.data.token);
+                setUserLogin({
+                    username: '',
+                    password: ''
+                })
+                history.push('/renter');
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Invalid Renter username or password', err);
+            })
+    };
+
+    return (
+        <div>
+            <ul className='TopLinks'>
+              <li>
+                <Link className='ListLinks' to='/'>Login</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/rental'>Dashboard</Link>
+              </li>
+              <li>
+                <Link className='ListLinks' to='/add'>Add Rental</Link>
+              </li>
+              <li>
+                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
+              </li>
+            </ul>
+            <FormHeading>Enter Login Credentials</FormHeading>
+            <FormSetup onSubmit={handleSubmit(submitHandle)}>
+                <label htmlFor='username'>Username</label>
+                <EnterInput
+                    id='username'
+                    type='text'
+                    name='username'
+                    placeholder='Minimum 5 Characters'
+                    onChange={handleChange}
+                    value={userLogin.username}
+                    ref={register({ required: true, minLength: 5 })}
+                />
+                {errors.username && errors.username.type === 'required' && (
+                    <p>This is required</p>
+                )}
+                {errors.username && errors.username.type === 'minLength' && (
+                    <p>Must be 5 characters in length</p>
+                )}
+                <label htmlFor='password'>Password</label>
+                <EnterInput
+                    id='password'
+                    type='password'
+                    name='password'
+                    placeholder='Minimum 5 Characters'
+                    onChange={handleChange}
+                    value={userLogin.password}
+                    ref={register({ required: true, minLength: 5 })}
+                />
+                {errors.password && errors.password.type === 'required' && (
+                    <p>This is required</p>
+                )}
+                {errors.password && errors.password.type === 'minLength' && (
+                    <p>Must be 5 characters in length</p>
+                )}
+                <div className='LogInButton'>
+                    <SubmitButton type='submit'>Owner Log In</SubmitButton>
+                    {/*<SubmitButton onClick={handleOwnerRegister}>New Owner Registration</SubmitButton>*/}
+                    <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+                    <SubmitButton onClick={handleRegister}>New Renter Registration</SubmitButton>
+                </div>
+            </FormSetup>
+        </div>
+    )
+}
+
 export default Login;
