@@ -10,10 +10,11 @@ const FormSetup = styled.form`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 8rem;
+	margin: 0 auto;
 	border: 1px solid green;
 	width: 50%;
 	border-radius: 25px;
+	padding: 3rem 0;
 `;
 
 const EnterInput = styled.input`
@@ -50,6 +51,9 @@ const LogoDiv = styled.div`
 	flex-grow: 0.5;
 `;
 
+const FormContainer = styled.div`
+	margin-top: 8rem;
+`;
 // end styled-components
 
 const LoginOld = ({ history }) => {
@@ -157,32 +161,35 @@ const LoginOld = ({ history }) => {
 					</ListItem>
 				</ul>
 			</NavigationBar>
-
-			<FormSetup onSubmit={handleSubmit}>
-				<label htmlFor='username'>Username</label>
-				<EnterInput
-					id='username'
-					type='text'
-					name='username'
-					placeholder='Enter Username'
-					onChange={handleChange}
-					value={userLogin.username}
-				/>
-				<label htmlFor='password'>Password</label>
-				<EnterInput
-					id='password'
-					type='password'
-					name='password'
-					placeholder='Enter Password'
-					onChange={handleChange}
-					value={userLogin.password}
-				/>
-				<div className='LogInButton'>
-					<SubmitButton type='submit'>Owner Log In</SubmitButton>
-					<SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
-					<SubmitButton onClick={handleRegister}>New Registration</SubmitButton>
-				</div>
-			</FormSetup>
+			<FormContainer>
+				<FormSetup onSubmit={handleSubmit}>
+					<label htmlFor='username'>Username</label>
+					<EnterInput
+						id='username'
+						type='text'
+						name='username'
+						placeholder='Enter Username'
+						onChange={handleChange}
+						value={userLogin.username}
+					/>
+					<label htmlFor='password'>Password</label>
+					<EnterInput
+						id='password'
+						type='password'
+						name='password'
+						placeholder='Enter Password'
+						onChange={handleChange}
+						value={userLogin.password}
+					/>
+					<div className='LogInButton'>
+						<SubmitButton type='submit'>Owner Log In</SubmitButton>
+						<SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+						<SubmitButton onClick={handleRegister}>
+							New Registration
+						</SubmitButton>
+					</div>
+				</FormSetup>
+			</FormContainer>
 		</>
 	);
 };
