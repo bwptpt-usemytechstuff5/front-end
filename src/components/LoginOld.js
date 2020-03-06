@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import Logout from './Logout';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 // styled-components
@@ -185,9 +187,4 @@ const LoginOld = ({ history }) => {
 	);
 };
 
-				<button type='submit'>Submit</button>
-			</StyledForm>
-		</FormWrapper>
-	);
-};
 export default LoginOld;
