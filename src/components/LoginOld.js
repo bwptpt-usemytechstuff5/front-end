@@ -5,26 +5,27 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 // styled-components
-const FormHeading = styled.h2`
-	margin-top: 40px;
-	margin-bottom: 20px;
-`;
-
 const FormSetup = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 40px;
+	margin-top: 8rem;
+	border: 1px solid green;
+	width: 50%;
+	border-radius: 25px;
 `;
 
 const EnterInput = styled.input`
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem 1rem;
+	border-radius: 25px;
 `;
 
 const SubmitButton = styled.button`
-	margin-top: 30px;
+	background-color: white;
+	border: none;
 `;
 
 const ListItem = styled.li`
@@ -156,36 +157,32 @@ const LoginOld = ({ history }) => {
 					</ListItem>
 				</ul>
 			</NavigationBar>
-			<div>
-				<FormHeading>Enter Login Credentials</FormHeading>
-				<FormSetup onSubmit={handleSubmit}>
-					<label htmlFor='username'>Username</label>
-					<EnterInput
-						id='username'
-						type='text'
-						name='username'
-						placeholder='Enter Username'
-						onChange={handleChange}
-						value={userLogin.username}
-					/>
-					<label htmlFor='password'>Password</label>
-					<EnterInput
-						id='password'
-						type='password'
-						name='password'
-						placeholder='Enter Password'
-						onChange={handleChange}
-						value={userLogin.password}
-					/>
-					<div className='LogInButton'>
-						<SubmitButton type='submit'>Owner Log In</SubmitButton>
-						<SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
-						<SubmitButton onClick={handleRegister}>
-							New Registration
-						</SubmitButton>
-					</div>
-				</FormSetup>
-			</div>
+
+			<FormSetup onSubmit={handleSubmit}>
+				<label htmlFor='username'>Username</label>
+				<EnterInput
+					id='username'
+					type='text'
+					name='username'
+					placeholder='Enter Username'
+					onChange={handleChange}
+					value={userLogin.username}
+				/>
+				<label htmlFor='password'>Password</label>
+				<EnterInput
+					id='password'
+					type='password'
+					name='password'
+					placeholder='Enter Password'
+					onChange={handleChange}
+					value={userLogin.password}
+				/>
+				<div className='LogInButton'>
+					<SubmitButton type='submit'>Owner Log In</SubmitButton>
+					<SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+					<SubmitButton onClick={handleRegister}>New Registration</SubmitButton>
+				</div>
+			</FormSetup>
 		</>
 	);
 };
