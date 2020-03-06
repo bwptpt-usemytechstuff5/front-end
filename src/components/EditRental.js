@@ -38,18 +38,16 @@ const EditRental = ({ history, match }) => {
 
     const [editRental, setEditRental] = useState(
         {
-            id: '',
-            type: '',
-            model: '',
-            description: '',
-            rentalPrice: '',
-            datePosted: ''
+            product_type: '',
+            product_model: '',
+            product_description: '',
+            rental_price: '',
         }
     );
 
     useEffect(() => {
         axiosWithAuth()
-            .get(`/rental/${match.params.id}`)
+            .get(`/products/${match.params.id}`)
             .then(res=> {
                 console.log('here is the get from EditRental', res.data);
                 setEditRental(res.data);
@@ -66,16 +64,15 @@ const EditRental = ({ history, match }) => {
     const handleSubmit = event => {
         event.preventDefault();
         axiosWithAuth()
-            .put(`/rental/${match.params.id}`, editRental)
+            .put(`/products/${match.params.id}`, editRental)
             .then(res => {
                 console.log('this is post response for editRental', res);
                 setEditRental({
-                    id: '',
-                    type: '',
-                    model: '',
-                    description: '',
-                    rentalPrice: '',
-                    datePosted: ''
+                    owner_id: '',
+                    product_type: '',
+                    product_model: '',
+                    product_description: '',
+                    rental_price: '',
                 })
                 setRental([...rental, res])
                 history.push('/rental');
@@ -100,50 +97,41 @@ const EditRental = ({ history, match }) => {
             </ul>
             <FormHeading>Edit Rental Information</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
-                <label htmlFor='type'>Technology Type</label>
+                <label htmlFor='product_type'>Technology Type</label>
                 <EnterInput
-                    id='type'
+                    id='product_type'
                     type='text'
-                    name='type'
+                    name='product_type'
                     placeholder='Enter Type'
                     onChange={handleChange}
-                    value={editRental.type}
+                    value={editRental.product_type}
                 />
-                <label htmlFor='model'>Model</label>
+                <label htmlFor='product_model'>Model</label>
                 <EnterInput
-                    id='model'
+                    id='product_model'
                     type='text'
-                    name='model'
+                    name='product_model'
                     placeholder='Enter Model'
                     onChange={handleChange}
-                    value={editRental.model}
+                    value={editRental.product_model}
                 />
-                <label htmlFor='description'>Description</label>
+                <label htmlFor='product_description'>Description</label>
                 <EnterInput
-                    id='description'
+                    id='product_description'
                     type='text'
-                    name='description'
+                    name='product_description'
                     placeholder='Enter Description'
                     onChange={handleChange}
-                    value={editRental.description}
+                    value={editRental.product_description}
                 />
-                <label htmlFor='rentalPrice'>Rental Price</label>
+                <label htmlFor='rental_price'>Rental Price</label>
                 <EnterInput
-                    id='rentalPrice'
+                    id='rental_price'
                     type='text'
-                    name='rentalPrice'
+                    name='rental_price'
                     placeholder='Enter Rental Price'
                     onChange={handleChange}
-                    value={editRental.rentalPrice}
-                />
-                <label htmlFor='datePosted'>Date Posted</label>
-                <EnterInput
-                    id='datePosted'
-                    type='text'
-                    name='datePosted'
-                    placeholder='Enter Date Posted'
-                    onChange={handleChange}
-                    value={editRental.datePosted}
+                    value={editRental.rental_price}
                 />
                 <SubmitButton type='submit'>Update Information</SubmitButton>
             </FormSetup>

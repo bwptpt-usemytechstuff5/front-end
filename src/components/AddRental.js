@@ -30,18 +30,16 @@ const SubmitButton = styled.button `
 // end styled-components
 
 
-const AddRental = ({ history }) => {
+const AddRental = ({ history, match }) => {
 
     const { rental, setRental } = useContext(RentContext);
 
     const [addRental, setAddRental] = useState(
         {
-            id: Math.random(),
-            type: '',
-            model: '',
-            description: '',
-            rentalPrice: '',
-            datePosted: ''
+            product_type: '',
+            product_model: '',
+            product_description: '',
+            rental_price: '',
         }
     );
 
@@ -53,15 +51,16 @@ const AddRental = ({ history }) => {
     const handleSubmit = event => {
         event.preventDefault();
         axiosWithAuth()
-            .post('/rental', addRental)
+            .post('/products', addRental)
             .then(res => {
                 console.log('this is post response for AddRental', res);
+                console.log("add rental", addRental);
                 setAddRental({
-                    type: '',
-                    model: '',
-                    description: '',
-                    rentalPrice: '',
-                    datePosted: ''
+                    owner_id: '',
+                    product_type: '',
+                    product_model: '',
+                    product_description: '',
+                    rental_price: '',
                 })
                 setRental([...rental, res])
                 history.push('/rental');
@@ -86,50 +85,41 @@ const AddRental = ({ history }) => {
             </ul>
             <FormHeading>Add Rental Information</FormHeading>
             <FormSetup onSubmit={handleSubmit}>
-                <label htmlFor='type'>Technology Type</label>
+                <label htmlFor='product_type'>Technology Type</label>
                 <EnterInput
-                    id='type'
+                    id='product_type'
                     type='text'
-                    name='type'
+                    name='product_type'
                     placeholder='Enter Type'
                     onChange={handleChange}
-                    value={addRental.type}
+                    value={addRental.product_type}
                 />
-                <label htmlFor='model'>Model</label>
+                <label htmlFor='product_model'>Model</label>
                 <EnterInput
-                    id='model'
+                    id='product_model'
                     type='text'
-                    name='model'
+                    name='product_model'
                     placeholder='Enter Model'
                     onChange={handleChange}
-                    value={addRental.model}
+                    value={addRental.product_model}
                 />
-                <label htmlFor='description'>Description</label>
+                <label htmlFor='product_description'>Description</label>
                 <EnterInput
-                    id='description'
+                    id='product_description'
                     type='text'
-                    name='description'
+                    name='product_description'
                     placeholder='Enter Description'
                     onChange={handleChange}
-                    value={addRental.description}
+                    value={addRental.product_description}
                 />
-                <label htmlFor='rentalPrice'>Rental Price</label>
+                <label htmlFor='rental_price'>Rental Price</label>
                 <EnterInput
-                    id='rentalPrice'
+                    id='rental_price'
                     type='text'
-                    name='rentalPrice'
+                    name='rental_price'
                     placeholder='Enter Rental Price'
                     onChange={handleChange}
-                    value={addRental.rentalPrice}
-                />
-                <label htmlFor='datePosted'>Date Posted</label>
-                <EnterInput
-                    id='datePosted'
-                    type='text'
-                    name='datePosted'
-                    placeholder='Enter Date Posted'
-                    onChange={handleChange}
-                    value={addRental.datePosted}
+                    value={addRental.rental_price}
                 />
                 <SubmitButton type='submit'>Add Rental</SubmitButton>
             </FormSetup>

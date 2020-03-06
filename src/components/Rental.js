@@ -45,7 +45,7 @@ const Rental = ({ item, history }) => {
 
     const handleDelete = id => {
         axiosWithAuth()
-        .delete(`/rental/${id}`)
+        .delete(`/products/${id}`)
         .then(res => {
             setRental(rental.filter(oldRental => oldRental.id !== id))
         })
