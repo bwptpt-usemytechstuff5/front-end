@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-//import { useForm } from 'react-hook-form';
 import Logout from './Logout';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
@@ -35,8 +34,6 @@ const Login = ({ history }) => {
         username: '',
         password: ''
     })
-
-    //const { register, handleSubmit, errors } = useForm();
 
     const handleChange = event => {
 
@@ -137,14 +134,13 @@ const Login = ({ history }) => {
               </li>
             </ul>
             <FormHeading>Enter Login Credentials</FormHeading>
-      {/*      <FormSetup onSubmit={handleSubmit(submitHandle)}> */}
                 <FormSetup onSubmit={submitHandle}>
                 <label htmlFor='username'>Username</label>
                 <EnterInput
                     id='username'
                     type='text'
                     name='username'
-                    placeholder='Minimum 5 Characters'
+                    placeholder='Enter Username'
                     onChange={handleChange}
                     value={userLogin.username}
                 />
@@ -154,7 +150,7 @@ const Login = ({ history }) => {
                     id='password'
                     type='password'
                     name='password'
-                    placeholder='Minimum 5 Characters'
+                    placeholder='Enter Password'
                     onChange={handleChange}
                     value={userLogin.password}
         

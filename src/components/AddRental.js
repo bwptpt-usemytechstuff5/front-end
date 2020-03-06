@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Logout from './Logout';
 import RentContext from '../contexts/RentContext';
 import styled from 'styled-components';
@@ -34,6 +35,8 @@ const AddRental = ({ history, match }) => {
 
     const { rental, setRental } = useContext(RentContext);
 
+    const { register, handleSubmit, errors } = useForm();
+
     const [addRental, setAddRental] = useState(
         {
             product_type: '',
@@ -48,7 +51,7 @@ const AddRental = ({ history, match }) => {
         setAddRental({ ...addRental, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = event => {
+    const submitForm = event => {
         event.preventDefault();
         axiosWithAuth()
             .post('/products', addRental)
@@ -84,7 +87,7 @@ const AddRental = ({ history, match }) => {
               </li>
             </ul>
             <FormHeading>Add Rental Information</FormHeading>
-            <FormSetup onSubmit={handleSubmit}>
+            <FormSetup onSubmit={handleSubmit(submitForm)}>
                 <label htmlFor='product_type'>Technology Type</label>
                 <EnterInput
                     id='product_type'
@@ -93,7 +96,11 @@ const AddRental = ({ history, match }) => {
                     placeholder='Enter Type'
                     onChange={handleChange}
                     value={addRental.product_type}
+                    ref={register({ required: true })}
                 />
+                {errors.product_type && errors.product_type.type === 'required' && (
+                    <p>This is required</p>
+                )}
                 <label htmlFor='product_model'>Model</label>
                 <EnterInput
                     id='product_model'
@@ -102,7 +109,11 @@ const AddRental = ({ history, match }) => {
                     placeholder='Enter Model'
                     onChange={handleChange}
                     value={addRental.product_model}
+                    ref={register({ required: true })}
                 />
+                {errors.product_model && errors.product_model.type === 'required' && (
+                    <p>This is required</p>
+                )}
                 <label htmlFor='product_description'>Description</label>
                 <EnterInput
                     id='product_description'
@@ -111,7 +122,11 @@ const AddRental = ({ history, match }) => {
                     placeholder='Enter Description'
                     onChange={handleChange}
                     value={addRental.product_description}
+                    ref={register({ required: true })}
                 />
+                {errors.product_description && errors.product_description.type === 'required' && (
+                    <p>This is required</p>
+                )}
                 <label htmlFor='rental_price'>Rental Price</label>
                 <EnterInput
                     id='rental_price'
@@ -120,7 +135,11 @@ const AddRental = ({ history, match }) => {
                     placeholder='Enter Rental Price'
                     onChange={handleChange}
                     value={addRental.rental_price}
+                    ref={register({ required: true })}
                 />
+                {errors.rental_price && errors.rental_price.type === 'required' && (
+                    <p>This is required</p>
+                )}
                 <SubmitButton type='submit'>Add Rental</SubmitButton>
             </FormSetup>
         </div>
