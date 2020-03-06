@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Logout from './Logout';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
@@ -27,28 +25,6 @@ const EnterInput = styled.input`
 const SubmitButton = styled.button`
 	background-color: white;
 	border: none;
-`;
-
-const ListItem = styled.li`
-	text-decoration: none;
-	color: black;
-	margin: auto;
-`;
-
-const NavigationBar = styled.nav`
-	width: 100%;
-	height: 5rem;
-	font-size: 1.5rem;
-	background-color: white;
-	flex-direction: row;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	border-bottom: 1px solid lightgrey;
-`;
-
-const LogoDiv = styled.div`
-	flex-grow: 0.5;
 `;
 
 const FormContainer = styled.div`
@@ -134,33 +110,6 @@ const LoginOld = ({ history }) => {
 
 	return (
 		<>
-			<NavigationBar>
-				<ul className='TopLinks'>
-					<LogoDiv>
-						<p>Use My Tech Stuff</p>
-					</LogoDiv>
-					<ListItem>
-						<Link className='ListLinks' to='/'>
-							Login
-						</Link>
-					</ListItem>
-					<ListItem>
-						<Link className='ListLinks' to='/rental'>
-							Dashboard
-						</Link>
-					</ListItem>
-					<ListItem>
-						<Link className='ListLinks' to='/add'>
-							Add Rental
-						</Link>
-					</ListItem>
-					<ListItem>
-						<Link onClick={Logout} className='ListLinks' to='/logout'>
-							Logout
-						</Link>
-					</ListItem>
-				</ul>
-			</NavigationBar>
 			<FormContainer>
 				<FormSetup onSubmit={handleSubmit}>
 					<label htmlFor='username'>Username</label>
