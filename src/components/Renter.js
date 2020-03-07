@@ -3,16 +3,15 @@ import styled from 'styled-components';
 
 // styled-components
 const Card = styled.div `
-  border: solid black 2px;
-  margin: 50px 250px 50px 250px;
+  border: solid green 2px;
+  margin: 50px 350px 50px 350px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blue;
 `;
 
 const Name = styled.h1 `
-  color: yellow;
+  color: blue;
   font-weight: bold;
 `;
 
@@ -21,7 +20,7 @@ const Info = styled.ul `
 `;
 
 const ListItems = styled.li `
-  color: white;
+  color: black;
 `;
 
 const SelectButton = styled.button `
@@ -34,7 +33,9 @@ background-color: yellow;
 const Renter = ({ item }) => {
   
   const handleSelect = product => {
-    alert(`${product} request sucessfully sent`);
+    alert(`${product} sucessfully rented`);
+    console.log('this is item from renter', product);
+
   }
 
     return (

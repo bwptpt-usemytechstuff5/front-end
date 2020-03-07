@@ -4,28 +4,54 @@ import Logout from './Logout';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
-// styled-components
-const FormHeading = styled.h2 `
-margin-top: 40px;
-margin-bottom: 20px;
+const FormSetup = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	border: 1px solid green;
+	width: 50%;
+	border-radius: 25px;
+	padding: 3rem 0;
 `;
 
-const FormSetup = styled.form `
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 40px;
+const EnterInput = styled.input`
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem 1rem;
+	border-radius: 25px;
 `;
 
-const EnterInput = styled.input `
-margin-top: 20px;
-margin-bottom: 20px;
+const SubmitButton = styled.button`
+	background-color: white;
+	border: none;
 `;
 
-const SubmitButton = styled.button `
-margin-top: 30px;
+const FormContainer = styled.div`
+	margin-top: 8rem;
 `;
+const NavigationBar = styled.nav`
+		width: 100%;
+		height: 5rem;
+		font-size: 1.5rem;
+		background-color: white;
+		flex-direction: row;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		border-bottom: 1px solid lightgrey;
+	`;
+
+	const ListItem = styled.li`
+		text-decoration: none;
+		color: black;
+		margin: auto;
+	`;
+
+	const LogoDiv = styled.div`
+		flex-grow: 0.5;
+	`;
 // end styled-components
 
 const Login = ({ history }) => {
@@ -119,50 +145,64 @@ const Login = ({ history }) => {
 
     return (
         <div>
-            <ul className='TopLinks'>
-              <li>
-                <Link className='ListLinks' to='/'>Login</Link>
-              </li>
-              <li>
-                <Link className='ListLinks' to='/rental'>Dashboard</Link>
-              </li>
-              <li>
-                <Link className='ListLinks' to='/add'>Add Rental</Link>
-              </li>
-              <li>
-                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
-              </li>
-            </ul>
-            <FormHeading>Enter Login Credentials</FormHeading>
-                <FormSetup onSubmit={submitHandle}>
-                <label htmlFor='username'>Username</label>
-                <EnterInput
-                    id='username'
-                    type='text'
-                    name='username'
-                    placeholder='Enter Username'
-                    onChange={handleChange}
-                    value={userLogin.username}
-                />
+            <NavigationBar>
+                <ul className='TopLinks'>
+                    <LogoDiv>
+                        <p>Use My Tech Stuff</p>
+                    </LogoDiv>
+                    <ListItem>
+                        <Link className='ListLinks' to='/'>
+                            Login
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link className='ListLinks' to='/rental'>
+                            Dashboard
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link className='ListLinks' to='/add'>
+                            Add Rental
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link onClick={Logout} className='ListLinks' to='/logout'>
+                            Logout
+                        </Link>
+                    </ListItem>
+                </ul>
+            </NavigationBar>
+            <FormContainer>
+                        <FormSetup onSubmit={submitHandle}>
+                        <label htmlFor='username'>Username</label>
+                        <EnterInput
+                            id='username'
+                            type='text'
+                            name='username'
+                            placeholder='Enter Username'
+                            onChange={handleChange}
+                            value={userLogin.username}
+                        />
+                        
+                        <label htmlFor='password'>Password</label>
+                        <EnterInput
+                            id='password'
+                            type='password'
+                            name='password'
+                            placeholder='Enter Password'
+                            onChange={handleChange}
+                            value={userLogin.password}
                 
-                <label htmlFor='password'>Password</label>
-                <EnterInput
-                    id='password'
-                    type='password'
-                    name='password'
-                    placeholder='Enter Password'
-                    onChange={handleChange}
-                    value={userLogin.password}
-        
-                />
-                
-                <div className='LogInButton'>
-                    <SubmitButton type='submit'>Owner Log In</SubmitButton>
-                    {/*<SubmitButton onClick={handleOwnerRegister}>New Owner Registration</SubmitButton>*/}
-                    <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
-                    <SubmitButton onClick={handleRegister}>New Renter Registration</SubmitButton>
-                </div>
-            </FormSetup>
+                        />
+                        
+                        <div className='LogInButton'>
+                            <SubmitButton type='submit'>Owner Log In</SubmitButton>
+                            {/*<SubmitButton onClick={handleOwnerRegister}>New Owner Registration</SubmitButton>*/}
+                            <SubmitButton onClick={handleRenter}>Renter Log In</SubmitButton>
+                            <SubmitButton onClick={handleRegister}>Renter Registration</SubmitButton>
+                        </div>
+                    </FormSetup>
+                </FormContainer>
         </div>
     )
 }

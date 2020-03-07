@@ -30,6 +30,28 @@ const SubmitButton = styled.button`
 const FormContainer = styled.div`
 	margin-top: 8rem;
 `;
+
+const NavigationBar = styled.nav`
+		width: 100%;
+		height: 5rem;
+		font-size: 1.5rem;
+		background-color: white;
+		flex-direction: row;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		border-bottom: 1px solid lightgrey;
+	`;
+
+	const ListItem = styled.li`
+		text-decoration: none;
+		color: black;
+		margin: auto;
+	`;
+
+	const LogoDiv = styled.div`
+		flex-grow: 0.5;
+	`;
 // end styled-components
 
 const LoginOld = ({ history }) => {

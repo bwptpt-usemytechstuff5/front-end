@@ -7,18 +7,16 @@ import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 // styled-components
-
-const FormHeading = styled.h2 `
-    margin-top: 40px;
-    margin-bottom: 20px;
-`;
-
 const FormSetup = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 40px;
+	margin: 0 auto;
+	border: 1px solid green;
+	width: 50%;
+	border-radius: 25px;
+	padding: 3rem 0;
 `;
 
 const EnterInput = styled.input`
@@ -29,14 +27,41 @@ const EnterInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
-	margin-top: 30px;
+	background-color: white;
+	border: none;
 `;
 
-const AddRentalFormContainer = styled.div`
-    margin-top: 8rem;
-`;
+const NavigationBar = styled.nav`
+		width: 100%;
+		height: 5rem;
+		font-size: 1.5rem;
+		background-color: white;
+		flex-direction: row;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		border-bottom: 1px solid lightgrey;
+	`;
 
+	const ListItem = styled.li`
+		text-decoration: none;
+		color: black;
+		margin: auto;
+	`;
 
+	const LogoDiv = styled.div`
+		flex-grow: 0.5;
+    `;
+    
+    const AddRentalFormContainer = styled.div`
+		margin-top: 8rem;
+    `;
+    
+    const Title = styled.h1 `
+        color: black;
+        display: flex;
+        justify-content: center;
+    `
 // end styled-components
 
 const AddRental = ({ history, match }) => {
@@ -78,7 +103,7 @@ const AddRental = ({ history, match }) => {
 	};
 */
     const submitForm = event => {
-        event.preventDefault();
+        //event.preventDefault();
         axiosWithAuth()
             .post('/products', addRental)
             .then(res => {
@@ -98,22 +123,36 @@ const AddRental = ({ history, match }) => {
 
     return (
         <div>
-            <ul className='TopLinks'>
-              <li>
-                <Link className='ListLinks' to='/'>Login</Link>
-              </li>
-              <li>
-                <Link className='ListLinks' to='/rental'>Dashboard</Link>
-              </li>
-              <li>
-                <Link className='ListLinks' to='/add'>Add Rental</Link>
-              </li>
-              <li>
-                <Link onClick={Logout} className='ListLinks' to='/logout'>Logout</Link>
-              </li>
-            </ul>
-            <FormHeading>Add Rental Information</FormHeading>
+            <NavigationBar>
+                <ul className='TopLinks'>
+                    <LogoDiv>
+                        <p>Use My Tech Stuff</p>
+                    </LogoDiv>
+                    <ListItem>
+                        <Link className='ListLinks' to='/'>
+                            Login
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link className='ListLinks' to='/rental'>
+                            Dashboard
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link className='ListLinks' to='/add'>
+                            Add Rental
+                        </Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link onClick={Logout} className='ListLinks' to='/logout'>
+                            Logout
+                        </Link>
+                    </ListItem>
+                </ul>
+            </NavigationBar>
+            {/*<FormHeading>Add Rental Information</FormHeading>*/}
             <AddRentalFormContainer>
+                <Title>Add Items for Rent</Title>
                 <FormSetup onSubmit={handleSubmit(submitForm)}>
                     <label htmlFor='product_type'>Technology Type</label>
                     <EnterInput
