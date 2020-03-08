@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import styled from 'styled-components';
 import RentContext from '../contexts/RentContext';
+import CartContext from '../contexts/CartContext';
 import Renter from './Renter';
 
 
@@ -39,8 +40,10 @@ const NavigationBar = styled.nav`
 	`;
 
 
-const RenterMap = () => {
+const RenterMap = ({ history }) => {
+	
 	const { rental, setRental } = useContext(RentContext);
+	const { cart, setCart } = useContext(CartContext);
 
 	useEffect(() => {
 		axiosWithAuth()
@@ -72,9 +75,9 @@ const RenterMap = () => {
 					</ul>
 				</NavigationBar>
 				<RenterStyle>
-				<Title>Available Items for Rent</Title>
+				<Title>Items for Rent</Title>
 					{rental.map(item => {
-						return <Renter key={item.id} item={item} />;
+						return <Renter key={item.id} history={history} item={item} cart={cart} setCart={setCart} />;
 					})}
 				</RenterStyle>
 		</div>

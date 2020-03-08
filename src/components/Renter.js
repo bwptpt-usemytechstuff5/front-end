@@ -30,12 +30,12 @@ background-color: yellow;
 // end styled-components
 
 
-const Renter = ({ item }) => {
-  
-  const handleSelect = product => {
-    alert(`${product} sucessfully rented`);
-    console.log('this is item from renter', product);
+const Renter = ({ item, history, cart, setCart }) => {
 
+  const handleSelect = product => {
+    console.log('this is item from renter', product);
+    setCart(product);
+    history.push('/cart');
   }
 
     return (
@@ -47,7 +47,7 @@ const Renter = ({ item }) => {
                   <ListItems>Description: {item.product_description}</ListItems>
                   <ListItems>Rental Price: {item.rental_price}</ListItems>
               </Info>
-              <SelectButton onClick={() => handleSelect(item.product_type)}>Rent Now</SelectButton>
+              <SelectButton onClick={() => handleSelect(item)}>Add to Cart</SelectButton>
             </Card>      
         </div>
     );

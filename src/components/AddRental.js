@@ -152,7 +152,7 @@ const AddRental = ({ history, match }) => {
             </NavigationBar>
             {/*<FormHeading>Add Rental Information</FormHeading>*/}
             <AddRentalFormContainer>
-                <Title>Add Items for Rent</Title>
+                <Title>Add Items to Rent</Title>
                 <FormSetup onSubmit={handleSubmit(submitForm)}>
                     <label htmlFor='product_type'>Technology Type</label>
                     <EnterInput

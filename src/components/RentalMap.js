@@ -81,7 +81,7 @@ const RentalMap = ({ history }) => {
                 </ul>
             </NavigationBar>
 			<RentalStyle>
-			<Title>My Available Items for Rent</Title>
+			<Title>My Items for Rent</Title>
 				{rental.map(item => {
 					return <Rental key={item.id} history={history} item={item} />;
 				})}
