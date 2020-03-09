@@ -69,6 +69,11 @@ const Cart = ({ history }) => {
     const { cart } = useContext(CartContext);
     const { rental, setRental } = useContext(RentContext);
 
+    console.log('this is in cart', cart);
+    const checkOut = [];
+    checkOut.push(cart);
+    console.log('this is the checkOut array', checkOut);
+
     const handleDash = (id, product) => {
         console.log('this is handleDash ID', id);
         axiosWithAuth()
@@ -101,6 +106,11 @@ const Cart = ({ history }) => {
                         <Link className='ListLinks' to='/renter'>
                             Dashboard
                         </Link>
+                    </ListItem>
+                    <ListItem>
+                    <Link className='ListLinks' to='/cart'>
+                      Cart
+                    </Link>
                     </ListItem>
                     <ListItem>
                         <Link onClick={Logout} className='ListLinks' to='/logout'>
